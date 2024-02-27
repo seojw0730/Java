@@ -21,7 +21,7 @@ public class MainMenu {
 				new DeptMenu().deptMenu();
 				break;
 			case "3":
-				new SalgradeMenu().salgradeMenu();
+				new SalgradeMenu().menu();
 				break;
 			default:
 				exit = true;

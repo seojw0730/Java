@@ -12,6 +12,31 @@ import java.util.List;
 import kh.mclass.jdbc.model.vo.Salgrade;
 
 public class SalgradeDao {
+	public Salgrade selectOne(Connection con, int grade) {
+		Salgrade result = null;
+		String sql = "select * from salgrade where grade = ?"; // TODO
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, grade);
+			// TODO
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = new Salgrade(); // TODO 아래 확인
+				result.setGrade(rs.getInt("grade"));
+				result.setLosal(rs.getInt("losal"));
+				result.setHisal(rs.getInt("hisal"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+
 	public List<Salgrade> selectList(Connection con) {
 		String sql = "select * from Salgrade";
 		PreparedStatement pstmt = null;
@@ -64,6 +89,22 @@ public class SalgradeDao {
 			pstmt.setInt(1, grade);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int update(Connection con, Salgrade vo) {
+		int result = -1;
+		String sql = "update "; // TODO
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = con.prepareStatement(sql);
+			// TODO
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);

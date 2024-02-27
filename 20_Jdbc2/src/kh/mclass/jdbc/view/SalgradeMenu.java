@@ -10,23 +10,31 @@ public class SalgradeMenu {
 	private Scanner sc = new Scanner(System.in);
 	private SalgradeController controller = new SalgradeController();
 
-	public void salgradeMenu() {
+	public void menu() {
 		while (true) {
 			boolean exit = false;
 			System.out.println("메뉴를 고르세요");
-			System.out.println("1. SALGRADE 조회");
-			System.out.println("2. SALGRADE 추가");
-			System.out.println("3. SALGRADE 삭제");
+			System.out.println("1. SALGRADE 항목 조회");
+			System.out.println("2. SALGRADE 조회");
+			System.out.println("3. SALGRADE 추가");
+			System.out.println("4. SALGRADE 삭제");
+			System.out.println("5. SALGRADE 수정");
 			String menu = sc.nextLine();
 			switch (menu) {
 			case "1":
-				selectList();
+				selectOne();
 				break;
 			case "2":
-				insert();
+				selectList();
 				break;
 			case "3":
+				insert();
+				break;
+			case "4":
 				delete();
+				break;
+			case "5":
+				update();
 				break;
 			default:
 				exit = true;
@@ -36,6 +44,22 @@ public class SalgradeMenu {
 				break;
 		}
 		System.out.println("메인으로");
+	}
+
+	public void selectOne() {
+		try {
+			System.out.print("선택할 grade: ");
+			String gradeStr = sc.nextLine();
+			int grade = Integer.parseInt(gradeStr);
+			Salgrade vo = controller.selectOne(grade);
+			if (vo == null)
+				System.out.println("오류로 데이터 읽기 실패");
+			else {
+				System.out.println(vo);
+			}
+		} catch (NumberFormatException e) {
+			System.out.println("다시 입력");
+		}
 	}
 
 	public void selectList() {
@@ -88,6 +112,15 @@ public class SalgradeMenu {
 				System.out.println("삭제 성공");
 			else
 				System.out.println("삭제 실패");
+		} catch (NumberFormatException e) {
+			System.out.println("다시 입력");
+		}
+	}
+
+	public void update() {
+		try {
+			System.out.print("수정할 grade: ");
+			int result = controller.update(null);
 		} catch (NumberFormatException e) {
 			System.out.println("다시 입력");
 		}
