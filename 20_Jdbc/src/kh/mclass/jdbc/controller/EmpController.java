@@ -2,21 +2,21 @@ package kh.mclass.jdbc.controller;
 
 import java.util.List;
 
-import kh.mclass.jdbc.model.dao.EmpDao;
+import kh.mclass.jdbc.model.service.EmpService;
 import kh.mclass.jdbc.model.vo.Emp;
 
 public class EmpController {
-	private EmpDao dao = new EmpDao();
+	private EmpService service = new EmpService();
 
 	public List<Emp> selectList() {
-		return dao.selectList();
+		return service.selectList();
 	}
 
-	public void insertEmp(Emp emp) {
-		dao.insertEmp(emp);
+	public int insert(Emp vo) {
+		return service.insert(vo);
 	}
 
-	public void deleteEmp() {
+	public int delete(int empno) {
+		return service.delete(empno);
 	}
-
 }

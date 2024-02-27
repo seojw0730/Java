@@ -8,14 +8,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import kh.mclass.jdbc.model.vo.Emp;
+import kh.mclass.jdbc.model.vo.Emp2;
 
 public class TestJdbcEmp {
 	public static void main(String[] args) {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rset = null;
-		List<Emp> empList = null; // 오류인 상태를 유지
+		List<Emp2> empList = null; // 오류인 상태를 유지
 //		List<Emp> empList = new Arraylist<Emp>(); // 0 으로 출력됨
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver"); // lib, jar, Class 확인
@@ -28,10 +28,10 @@ public class TestJdbcEmp {
 			stmt = conn.createStatement();
 			rset = stmt.executeQuery("select * from emp");
 			// List 생성
-			empList = new ArrayList<Emp>(); // size: 0
+			empList = new ArrayList<Emp2>(); // size: 0
 			while (rset.next()) {
 				// Emp 객체 생성
-				Emp emp = new Emp();
+				Emp2 emp = new Emp2();
 				// Emp 객체 값 대입
 				emp.setEmpno(rset.getInt("empno"));
 				emp.setComm(rset.getDouble("comm"));
@@ -71,7 +71,7 @@ public class TestJdbcEmp {
 		} else {
 			System.out.println("사원 수: " + empList.size());
 			if (empList.size() > 0) {
-				for (Emp emp : empList) {
+				for (Emp2 emp : empList) {
 					System.out.println(emp);
 				}
 			}
