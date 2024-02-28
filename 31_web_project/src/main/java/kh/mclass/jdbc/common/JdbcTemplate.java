@@ -1,10 +1,12 @@
 package kh.mclass.jdbc.common;
 
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 public class JdbcTemplate {
 	private JdbcTemplate() {
@@ -12,16 +14,27 @@ public class JdbcTemplate {
 
 	public static Connection getConnection() {
 		Connection con = null;
+		Properties prop = new Properties();
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "scott", "TIGER");
+			String currentPath = JdbcTemplate.class.getResource("").getPath();
+			String currentPath2 = JdbcTemplate.class.getResource("./").getPath();
+			String currentPath3 = JdbcTemplate.class.getResource("../../").getPath();
+			System.out.println(currentPath);
+			System.out.println(currentPath2);
+			System.out.println(currentPath3);
+			prop.load(new FileReader(currentPath + "driver.properties"));
+			System.out.println(prop.getProperty("alert.msg"));
+//			System.out.println(prop.getProperty("jdbc.url"));
+			Class.forName(prop.getProperty("jdbc.driver"));
+//			Class.forName("oracle.jdbc.driver.OracleDriver");
+			con = DriverManager.getConnection(prop.getProperty("jdbc.url"), 
+					prop.getProperty("jdbc.username"), 
+					prop.getProperty("jdbc.password"));
 			if (con != null)
 				System.out.println("연결 성공");
 			else
 				System.out.println("연결 실패");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return con;
