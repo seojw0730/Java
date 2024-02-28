@@ -10,5 +10,6 @@
 Dept List
 
 ${data1 }
+${data2 }
 </body>
 </html>

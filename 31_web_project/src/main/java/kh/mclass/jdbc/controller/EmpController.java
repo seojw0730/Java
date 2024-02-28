@@ -35,6 +35,8 @@ public class EmpController extends HttpServlet {
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		EmpService service = new EmpService();
 		List<Emp> result = service.selectList();
+		request.setAttribute("data1", result);
+		request.setAttribute("data2", "빈 데이터");
 		request.getRequestDispatcher("/views/emplist.jsp").forward(request, response);
 	}
 
