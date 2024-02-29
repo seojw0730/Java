@@ -1,8 +1,6 @@
 package kh.mclass.jdbc.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,19 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kh.mclass.jdbc.model.service.SalgradeService;
-import kh.mclass.jdbc.model.vo.Salgrade;
 
 /**
- * Servlet implementation class SalgradeController
+ * Servlet implementation class SalgradeDeleteController
  */
-@WebServlet("/sallist")
-public class SalgradeController extends HttpServlet {
+@WebServlet("/sal/delete")
+public class SalgradeDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public SalgradeController() {
+	public SalgradeDeleteController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -33,10 +30,17 @@ public class SalgradeController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
+		String gradeStr = req.getParameter("grade");
+		int grade = Integer.parseInt(gradeStr);
 		SalgradeService service = new SalgradeService();
-		List<Salgrade> result = service.selectList();
-		req.setAttribute("volist", result);
-		req.getRequestDispatcher("/views/sallist.jsp").forward(req, res);
+		int result = service.delete(grade);
+
+		if (result > 0) {
+			res.sendRedirect(req.getContextPath() + "/sallist");
+		} else {
+			req.setAttribute("msg", "등급 삭제 실패");
+			req.getRequestDispatcher("/views/errorPage.jsp").forward(req, res);
+		}
 	}
 
 	/**

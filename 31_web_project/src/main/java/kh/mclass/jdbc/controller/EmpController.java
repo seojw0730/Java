@@ -30,14 +30,12 @@ public class EmpController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		EmpService service = new EmpService();
 		List<Emp> result = service.selectList();
-		request.setAttribute("data1", result);
-		request.setAttribute("data2", "빈 데이터");
-		request.getRequestDispatcher("/views/emplist.jsp").forward(request, response);
+		req.setAttribute("volist", result);
+		req.setAttribute("vacancy", "빈 데이터");
+		req.getRequestDispatcher("/views/emplist.jsp").forward(req, res);
 	}
 
 	/**

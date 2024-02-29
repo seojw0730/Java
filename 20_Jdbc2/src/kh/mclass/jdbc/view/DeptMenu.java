@@ -62,7 +62,6 @@ public class DeptMenu {
 			String dname = sc.nextLine();
 			System.out.print("loc: ");
 			String loc = sc.nextLine();
-			System.out.print("mgr: ");
 
 			Dept vo = new Dept(deptno, dname, loc);
 

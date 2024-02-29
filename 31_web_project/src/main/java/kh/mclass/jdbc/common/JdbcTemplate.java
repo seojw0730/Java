@@ -19,9 +19,9 @@ public class JdbcTemplate {
 			String currentPath = JdbcTemplate.class.getResource("").getPath();
 			String currentPath2 = JdbcTemplate.class.getResource("./").getPath();
 			String currentPath3 = JdbcTemplate.class.getResource("../../").getPath();
-			System.out.println(currentPath);
-			System.out.println(currentPath2);
-			System.out.println(currentPath3);
+//			System.out.println(currentPath);
+//			System.out.println(currentPath2);
+//			System.out.println(currentPath3);
 			prop.load(new FileReader(currentPath + "driver.properties"));
 			System.out.println(prop.getProperty("alert.msg"));
 //			System.out.println(prop.getProperty("jdbc.url"));

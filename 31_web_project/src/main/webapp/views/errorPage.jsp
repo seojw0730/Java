@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>제목</title>
+<title>Error Page</title>
 </head>
 <body>
-bfolder - b.jsp
+<h1>${msg }</h1>
 </body>
 </html>
