@@ -27,8 +27,7 @@ public class JdbcTemplate {
 //			System.out.println(prop.getProperty("jdbc.url"));
 			Class.forName(prop.getProperty("jdbc.driver"));
 //			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection(prop.getProperty("jdbc.url"), 
-					prop.getProperty("jdbc.username"), 
+			con = DriverManager.getConnection(prop.getProperty("jdbc.url"), prop.getProperty("jdbc.username"),
 					prop.getProperty("jdbc.password"));
 			if (con != null)
 				System.out.println("연결 성공");
