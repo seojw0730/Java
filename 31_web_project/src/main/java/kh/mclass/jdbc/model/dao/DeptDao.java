@@ -14,12 +14,12 @@ import kh.mclass.jdbc.model.vo.Dept;
 public class DeptDao {
 	public Dept selectOne(Connection con, int deptno) {
 		Dept result = null;
-		String sql = "select"; // TODO
+		String sql = "select * from dept where deptno = ?"; // TODO
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			pstmt = con.prepareStatement(sql);
-			// TODO
+			pstmt.setInt(1, deptno);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				result = new Dept(); // TODO 아래 확인

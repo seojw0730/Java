@@ -15,6 +15,13 @@ import kh.mclass.jdbc.model.vo.Dept;
 public class DeptService {
 	private DeptDao dao = new DeptDao();
 
+	public Dept selectOne(int deptno) {
+		Dept result = null;
+		Connection con = getConnection();
+		result = dao.selectOne(con, deptno);
+		close(con);
+		return result;
+	}
 	public List<Dept> selectList() {
 		List<Dept> result = null;
 		Connection con = getConnection();

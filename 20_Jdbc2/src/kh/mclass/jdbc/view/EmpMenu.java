@@ -15,18 +15,21 @@ public class EmpMenu {
 		while (true) {
 			boolean exit = false;
 			System.out.println("메뉴를 고르세요");
-			System.out.println("1. EMP 조회");
-			System.out.println("2. EMP 추가");
-			System.out.println("3. EMP 삭제");
+			System.out.println("1. EMP 항목 조회");
+			System.out.println("2. EMP 조회");
+			System.out.println("3. EMP 추가");
+			System.out.println("4. EMP 삭제");
 			String menu = sc.nextLine();
 			switch (menu) {
 			case "1":
+
+			case "2":
 				selectList();
 				break;
-			case "2":
+			case "3":
 				insert();
 				break;
-			case "3":
+			case "4":
 				delete();
 				break;
 			default:
@@ -37,6 +40,20 @@ public class EmpMenu {
 				break;
 		}
 		System.out.println("메인으로");
+	}
+
+	public void selectOne() {
+		System.out.print("조회할 empno: ");
+		String empnoStr = sc.nextLine();
+		int empno = Integer.parseInt(empnoStr);
+
+		Emp vo = controller.selectOne(empno);
+
+		if (vo == null) {
+			System.out.println("오류로 데이터 읽기 실패");
+		} else {
+			System.out.println(vo);
+		}
 	}
 
 	public void selectList() {

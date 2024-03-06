@@ -11,6 +11,33 @@ import static kh.mclass.jdbc.common.JdbcTemplate.*;
 import kh.mclass.jdbc.model.vo.Emp;
 
 public class EmpDao {
+	
+	public Emp selectOne(Connection con, int empno) {
+		Emp result = null;
+		String sql = "select * from emp where empno = ?";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, empno);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = new Emp();
+				result.setEmpno(rs.getInt("empno"));
+				result.setEname(rs.getString("ename"));
+				result.setJob(rs.getString("job"));
+				result.setMgr(rs.getInt("mgr"));
+				result.setHiredate(rs.getDate("hiredate"));
+				result.setSal(rs.getDouble("sal"));
+				result.setComm(rs.getDouble("comm"));
+				result.setDeptno(rs.getInt("deptno"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 	public List<Emp> selectList(Connection con) {
 		String sql = "select * from emp ";
 		PreparedStatement pstmt = null;

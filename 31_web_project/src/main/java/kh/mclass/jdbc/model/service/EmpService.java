@@ -10,6 +10,14 @@ import kh.mclass.jdbc.model.vo.Emp;
 public class EmpService {
 	private EmpDao dao = new EmpDao();
 
+	public Emp selectOne(int empno) {
+		Emp result = null;
+		Connection con = getConnection();
+		result = dao.selectOne(con, empno);
+		close(con);
+		return result;
+	}
+	
 	public List<Emp> selectList() {
 		List<Emp> result = null;
 		Connection con = getConnection();

@@ -46,9 +46,9 @@ public class DeptInsertController extends HttpServlet {
 		}
 		System.out.println("=====req.getParameterValues()====="); // ex) 레시피 재료들... 선호 장르 선택
 		// ?genre=g1&genre=g2&genre=g3
-		String[] genreArr = req.getParameterValues("genre");
-		List<String> genreList = Arrays.asList(genreArr);
-		System.out.println(genreList);
+//		String[] genreArr = req.getParameterValues("genre");
+//		List<String> genreList = Arrays.asList(genreArr);
+//		System.out.println(genreList);
 
 		System.out.println("=====req.getParameterMap()====="); // Arrays.asList()함께 - 레시피 재료들... 선호 장르 선택
 		Map<String, String[]> paramMap = req.getParameterMap();
@@ -72,6 +72,9 @@ public class DeptInsertController extends HttpServlet {
 
 		if (result > 0) {
 			res.sendRedirect(req.getContextPath() + "/deptlist");
+//			req.getSession().setAttribute("sessionScope", "ss Value"); // 이렇게 하면 다른 jsp파일이나 서블릿에서 getAttribute로 호출 가능(removeAttribute전까지, 브라우저 닫기 전까지)
+//			res.sendRedirect(req.getContextPath() + "/dept/insert?no=~~"); // 이렇게 데이터 넘길 수 있음
+//			res.sendRedirect("http://www.naver.com"); // 이렇게 하면 네이버로 연결됨
 //			List<Dept> volist = service.selectList();
 //			req.setAttribute("volist", volist);
 //			req.setAttribute("data2", "컨트롤러");
