@@ -29,8 +29,19 @@ public class DeptInsertController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+//			throws ServletException, IOException {
+//		
+//	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+//		String[] n5 = request.getParameterValues("n5");
+		
 		String deptnoStr = request.getParameter("deptno");
 		int deptno = Integer.parseInt(deptnoStr);
 		String dname = request.getParameter("dname");
@@ -47,16 +58,6 @@ public class DeptInsertController extends HttpServlet {
 			request.setAttribute("msg", "부서 추가 실패");
 			request.getRequestDispatcher("/views/errorPage.jsp").forward(request, response);
 		}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

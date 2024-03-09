@@ -30,6 +30,15 @@ public class DeptDeleteController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String deptnoStr = request.getParameter("deptno");
 		int deptno = Integer.parseInt(deptnoStr);
 
@@ -43,16 +52,6 @@ public class DeptDeleteController extends HttpServlet {
 			request.setAttribute("msg", "부서 삭제 실패");
 			request.getRequestDispatcher("/views/errorPage.jsp").forward(request, response);
 		}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }
