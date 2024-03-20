@@ -85,5 +85,9 @@
 			</span>
 		</form>
 	</div>
+	<div>
+	<a href="${pageContext.request.contextPath }/home">Controller 통해서 jsp 열기 - js 에서 같은 모양 기호가 쓰임에 있어 혼선</a>
+	<a href="<%=request.getContextPath() %>/home">Controller 통해서 jsp 열기 - js 안에서 쓰면 색상 이상해짐</a>
+	</div>
 </body>
 </html>
