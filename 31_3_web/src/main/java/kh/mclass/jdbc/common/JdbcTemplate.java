@@ -13,6 +13,40 @@ import java.util.Properties;
 public class JdbcTemplate {
 	private JdbcTemplate() {
 	}
+	
+	public static Connection getConnectionSemi(boolean isLocal) {
+		Connection con = null;
+		Properties prop = null;
+		try {
+			prop = new Properties();
+			String currentPath = JdbcTemplate.class.getResource("").getPath();
+			prop.load(new FileReader(currentPath + "driver.properties"));
+			
+			Class.forName(prop.getProperty("jdbc.driver"));
+			if(isLocal) {
+				con = DriverManager.getConnection(prop.getProperty("jdbc.semi.localhost.url")
+						, prop.getProperty("jdbc.semi.username")
+						, prop.getProperty("jdbc.semi.password"));
+			} else{
+				con = DriverManager.getConnection(prop.getProperty("jdbc.semi.dbserver.url")
+						, prop.getProperty("jdbc.semi.username")
+						, prop.getProperty("jdbc.semi.password"));
+			}
+			if (con != null)
+				System.out.println("연결 성공");
+			else
+				System.out.println("연결 실패");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return con;
+	}
 
 	public static Connection getConnection() {
 		Connection con = null;

@@ -1,29 +1,23 @@
-package kh.mclass.jdbc.model.controller;
+package kh.mclass.semim.main.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kh.mclass.jdbc.model.service.DeptService;
-import kh.mclass.jdbc.model.vo.Dept;
-
-
 /**
- * Servlet implementation class DeptController
+ * Servlet implementation class AjaxTestController
  */
-@WebServlet("/deptlist")
-public class DeptController extends HttpServlet {
+@WebServlet("/ajax/test")
+public class AjaxTestController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeptController() {
+    public AjaxTestController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,23 +26,16 @@ public class DeptController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DeptService service = new DeptService();
-		List<Dept> volist = service.selectList();
-		if (volist == null) {
-			request.setAttribute("msg", "시스템 오류로 조회 실패");
-			request.getRequestDispatcher("/views/errorPage.jsp").forward(request, response);
-		} else {
-			request.setAttribute("volist", volist);
-			request.getRequestDispatcher("/WEB-INF/views/deptlist.jsp").forward(request, response);
-		}
+		System.out.println("/ajax/test Get");
+		request.getRequestDispatcher("/WEB-INF/views/semi/ajax_js.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		System.out.println("/ajax/test Post");
+		response.getWriter().append("js ajax text 결과값");
 	}
 
 }
