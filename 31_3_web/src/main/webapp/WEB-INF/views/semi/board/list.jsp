@@ -80,7 +80,8 @@ text-align: center;
 <div class="board pageNum">
 	<ul>
 	<c:if test="${map.startPageNum > 1}">
-		<li><a href="${pageContext.request.contextPath }/board/list?page=${map.startPageNum-1 }">  &lt;&lt; </a></li>
+		<li><a href="${pageContext.request.contextPath }/board/list?page=${page = 1}"> &lt;&lt; </a></li>
+        <li><a href="${pageContext.request.contextPath }/board/list?page=${map.startPageNum-1 }"> &lt; </a></li>
 	</c:if>
 	<c:forEach begin="${map.startPageNum }" end="${map.endPageNum }" var="page">
 		<c:if test="${map.currentPageNum == page }">
@@ -91,7 +92,8 @@ text-align: center;
 		</c:if>
 	</c:forEach>
 	<c:if test="${map.endPageNum < map.totalPageCount }">
-		<li><a href="${pageContext.request.contextPath }/board/list?page=${map.endPageNum+1 }">  &gt;&gt; </a></li>
+		<li><a href="${pageContext.request.contextPath }/board/list?page=${map.endPageNum + 1 }"> &gt; </a>
+        <li><a href="${pageContext.request.contextPath }/board/list?page=${page = map.totalPageCount}"> &gt;&gt; </a>
 	</c:if>
 	</ul>
 </div>

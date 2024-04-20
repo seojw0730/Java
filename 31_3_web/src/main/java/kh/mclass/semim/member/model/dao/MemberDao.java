@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+
 import static kh.mclass.jdbc.common.JdbcTemplate.*;
 import kh.mclass.semim.member.model.dto.MemberDto;
 import kh.mclass.semim.member.model.dto.MemberInfoDto;

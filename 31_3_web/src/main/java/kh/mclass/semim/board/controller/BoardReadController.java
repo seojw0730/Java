@@ -29,13 +29,13 @@ public class BoardReadController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String boardIdStr = request.getParameter("id");
+		Integer boardId = Integer.parseInt(boardIdStr);
+		request.setAttribute("dto", service.selectOne(boardId));
+		request.getRequestDispatcher("/WEB-INF/views/semi/board/read.jsp").forward(request, response);
 		try {
-			int boardId = Integer.parseInt(boardIdStr);
-			request.setAttribute("dto", service.selectOne(boardId));
-			request.getRequestDispatcher("/WEB-INF/views/semi/board/read.jsp").forward(request, response);
 		} catch (NumberFormatException e) {
 			System.out.println("!!!!!!!!!!!!!");
-			response.sendRedirect(request.getContextPath() + "/board/list");
+			response.sendRedirect(request.getContextPath() + "board/list");
 		}
 		
 	}

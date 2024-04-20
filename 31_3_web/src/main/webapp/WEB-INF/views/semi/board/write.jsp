@@ -10,9 +10,11 @@
 </head>
 <body>
 <h1>Semim Board Write</h1>
-<form id="frm-write">
+<form id="frm-write" enctype="multipart/form-data">
 	<div><label>제목</label><input type="text" name="title" required></div>
-	<div><label>내용</label><textarea name="content" rows="50" cols="50" required style="resize : none;">여기여기</textarea></div>
+	<div><label>내용</label><textarea name="content" cols="50" required style="resize : none;"></textarea></div>
+	<div><button type="button" class="btn file">파일추가</button></div>
+	<!-- event click 시 추가 -->
 	<div><button type="button" class="btn write">글쓰기</button></div>
 </form>
 
@@ -28,6 +30,19 @@ $(loadedHandler);
 function loadedHandler(){
 	// event 등록
 	$(".btn.write").on("click", btnWriteClkHandler);
+	$(".btn.file").on("click", btnFileClkHandler);
+}
+function btnFileClkHandler(){
+	var htmlVal = `<div><input type="file" name="uploadfiles"><button type="button" class="btn file-cancel">취소</button></div> `;
+	$(this).parent().after(htmlVal); // append 맨 마지막 자식으로 추가
+	
+	// JS 중요함. Event 등록 시 중복 등록 방지
+	$(".btn.file-cancel").off("click");
+	$(".btn.file-cancel").on("click", btnFileCancelClkHandler);
+}
+function btnFileCancelClkHandler(){
+	console.log("btnFileCancelClkHandler");
+	$(this).parent().remove();
 }
 function btnWriteClkHandler(){
 	
@@ -56,9 +71,11 @@ function btnWriteClkHandler(){
 	}
 
 	// <form>의 submit에 대한 코드
+	// 중요!!
 	var frm = document.getElementById("frm-write");
 	frm.method = "post"; // content 가 길어서
 	frm.action = "${pageContext.request.contextPath}/board/write";
+	frm.enctype = "multipart/form-data"; // form 태그 내부에 input type="file" 이 있다면
 	frm.submit();
 }
 </script>

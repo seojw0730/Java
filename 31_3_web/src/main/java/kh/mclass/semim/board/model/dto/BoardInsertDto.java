@@ -1,5 +1,7 @@
 package kh.mclass.semim.board.model.dto;
 
+import java.util.List;
+
 public class BoardInsertDto {
 //	BOARD
 
@@ -14,17 +16,20 @@ public class BoardInsertDto {
 	private String title;
 	private String content;
 	private String boardWriter; // TIMESTAMP
+	private List<FileWriteDto> fileList;
 
 	@Override
 	public String toString() {
-		return "BoardInsertDto [title=" + title + ", content=" + content + ", boardWriter=" + boardWriter + "]";
+		return "BoardInsertDto [title=" + title + ", content=" + content + ", boardWriter=" + boardWriter
+				+ ", filelist=" + fileList + "]";
 	}
 
-	public BoardInsertDto(String title, String content, String boardWriter) {
+	public BoardInsertDto(String title, String content, String boardWriter, List<FileWriteDto> fileList) {
 		super();
 		this.title = title;
 		this.content = content;
 		this.boardWriter = boardWriter;
+		this.fileList = fileList;
 	}
 
 	public String getTitle() {
@@ -37,6 +42,10 @@ public class BoardInsertDto {
 
 	public String getBoardWriter() {
 		return boardWriter;
+	}
+
+	public List<FileWriteDto> getFilelist() {
+		return fileList;
 	}
 
 }

@@ -48,7 +48,7 @@ public class BoardListController extends HttpServlet {
 			}
 		}
 		
-		request.setAttribute("map", service.selectPageList(pageSize, pageBlockSize, currentPageNum));
+		request.setAttribute("map", service.selectPageListMybatis(pageSize, currentPageNum));
 //		request.setAttribute("dtolist", service.selectAllList());
 		request.getRequestDispatcher("/WEB-INF/views/semi/board/list.jsp").forward(request, response);
 	}

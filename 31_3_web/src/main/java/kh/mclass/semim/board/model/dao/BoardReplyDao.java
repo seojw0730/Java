@@ -15,7 +15,6 @@ public class BoardReplyDao {
 	// selectList - all
 	public List<BoardReplyDto> selectAllList(Connection con) {
 //		BOARD_REPLY_ID         NOT NULL NUMBER         
-//		BOARD_ID               NOT NULL NUMBER         
 //		BOARD_REPLY_WRITER     NOT NULL VARCHAR2(20)   
 //		BOARD_REPLY_CONTENT    NOT NULL VARCHAR2(4000) 
 //		BOARD_REPLY_WRITE_TIME NOT NULL TIMESTAMP(6)   
