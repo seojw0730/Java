@@ -15,7 +15,7 @@
 	<select id="selectFileList" parameterType="int" resultMap="FileReadDtoResultMap">
 	SELECT BOARD_ID, BOARD_FILE_ID, SAVED_FILE_PATH_NAME, ORIGINAL_FILENAME 
 	FROM BOARD_FILE 
-	WHERE BOARD_ID = #{parameterType이 기본자료형이면 아무거나 적어도 상관없음, 매개변수가 딱 한개 들어오면 parameterType 안 적어줘도 됨}
+	WHERE BOARD_ID = #{아무거나}
 	</select>
 	
 	<select id="selectBoardReplyList" parameterType="int" resultType="kh.mclass.semim.board.model.dto.BoardReplyListDto">
