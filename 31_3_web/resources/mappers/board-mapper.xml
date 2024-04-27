@@ -29,7 +29,7 @@
 	</select>
 	
 	<insert id="insert" parameterType="BoardInsertDto">
-	INSERT
+	INSERT ALL
 	INTO BOARD(BOARD_ID, TITLE, CONTENT, WRITE_TIME, BOARD_WRITER, LOG_IP, READ_COUNT) 
 	VALUES (SEQ_BOARD_ID.NEXTVAL, #{title}, #{content}, DEFAULT, #{boardWriter}, null, DEFAULT) 
 	<if test="fileList != null">
